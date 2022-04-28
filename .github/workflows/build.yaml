@@ -18,7 +18,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
 
       - name: Build docker image
-        run: docker bluid -t duy71/cicd:v1 -f Dockerfile .
+        run: docker build -t duy71/cicd:v1 -f Dockerfile .
 
       - name: Push docker image
         run: docker push duy71/cicd:v1
