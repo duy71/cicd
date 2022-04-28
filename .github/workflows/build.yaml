@@ -5,14 +5,20 @@ on:
     branches: [ master ]
 
 jobs:
-  bluid:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       
-      - name: login Docker
+      - name: Login Docker
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+
+      - name: Build docker image
+        run: docker bluid -t duy71/cicd:v1 -f Dockerfile .
+
+      - name: Push docker image
+        run: docker push duy71/cicd:v1
